@@ -36,8 +36,11 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
+/*
 @Composable
 fun SimpleSwitch() {
     var isChecked by remember { mutableStateOf(false) }
@@ -57,6 +60,8 @@ fun SimpleSwitch() {
         )
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
@@ -93,6 +98,7 @@ fun SimpleSlider() {
 fun PreviewSimpleSlider() {
     SimpleSlider()
 }
+*/
 
 //radio button
 @Composable
@@ -102,11 +108,16 @@ fun SimpleRadioButtonGroup() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center
+            .padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Selecciona una opción", style = androidx.compose.ui.text.TextStyle(fontSize = androidx.compose.ui.unit.TextUnit.Unspecified))
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Selecciona una opción",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
 
         RadioButtonGroup(
             options = listOf("Opción 1", "Opción 2", "Opción 3"),
@@ -126,15 +137,18 @@ fun RadioButtonGroup(
         options.forEach { option ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 12.dp)
             ) {
                 RadioButton(
                     selected = (option == selectedOption),
-                    onClick = { onOptionSelected(option) }
+                    onClick = { onOptionSelected(option) },
+                    modifier = Modifier.padding(end = 12.dp)
                 )
                 Text(
                     text = option,
-                    modifier = Modifier.padding(start = 8.dp)
+                    fontSize = 16.sp
                 )
             }
         }
