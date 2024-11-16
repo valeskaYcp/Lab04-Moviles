@@ -93,3 +93,56 @@ fun SimpleSlider() {
 fun PreviewSimpleSlider() {
     SimpleSlider()
 }
+
+//radio button
+@Composable
+fun SimpleRadioButtonGroup() {
+    var selectedOption by remember { mutableStateOf("Opción 1") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Selecciona una opción", style = androidx.compose.ui.text.TextStyle(fontSize = androidx.compose.ui.unit.TextUnit.Unspecified))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        RadioButtonGroup(
+            options = listOf("Opción 1", "Opción 2", "Opción 3"),
+            selectedOption = selectedOption,
+            onOptionSelected = { selectedOption = it }
+        )
+    }
+}
+
+@Composable
+fun RadioButtonGroup(
+    options: List<String>,
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit
+) {
+    Column {
+        options.forEach { option ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = 8.dp)
+            ) {
+                RadioButton(
+                    selected = (option == selectedOption),
+                    onClick = { onOptionSelected(option) }
+                )
+                Text(
+                    text = option,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSimpleRadioButtonGroup() {
+    SimpleRadioButtonGroup()
+}
