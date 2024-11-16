@@ -48,15 +48,28 @@ fun SimpleSwitch() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Center
+            .padding(32.dp), // Mayor espacio alrededor
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Opción activada: ${if (isChecked) "Sí" else "No"}")
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "Opción activada: ${if (isChecked) "Sí" else "No"}",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
         Switch(
             checked = isChecked,
-            onCheckedChange = { isChecked = it }
+            onCheckedChange = { isChecked = it },
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colorScheme.primary,
+                uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
+                checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                uncheckedTrackColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)
+            ),
+            modifier = Modifier.padding(horizontal = 16.dp)
         )
     }
 }
@@ -68,6 +81,7 @@ fun SimpleSwitch() {
 fun PreviewSimpleSwitch() {
     SimpleSwitch()
 }
+
 
 //slider
 @Composable
