@@ -63,3 +63,33 @@ fun SimpleSwitch() {
 fun PreviewSimpleSwitch() {
     SimpleSwitch()
 }
+
+//slider
+@Composable
+fun SimpleSlider() {
+    var sliderPosition by remember { mutableStateOf(0f) }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(text = "Selecciona un valor: ${sliderPosition.toInt()}")
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Slider(
+            value = sliderPosition,
+            onValueChange = { newValue -> sliderPosition = newValue },
+            valueRange = 0f..100f,
+            steps = 5,
+            onValueChangeFinished = { /* */ },
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewSimpleSlider() {
+    SimpleSlider()
+}
